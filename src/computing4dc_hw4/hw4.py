@@ -1,3 +1,7 @@
+import datetime
+
+import pandas as pd
+
 ##### Try to use map and reduce in the next 3 exercises
 # 1)
 # Create a function called "count_simba" that counts and returns
@@ -29,6 +33,27 @@ print(count_simba(simba_test_data))
 # is an element of the input list and has as value its
 # day, month, and year.
 #
+
+
+# 3)
+def get_day_month_year(date_list):
+    df = pd.DataFrame()
+    i = 0
+    for date in date_list:
+        df.loc[i, "day"] = date.day
+        df.loc[i, "month"] = date.month
+        df.loc[i, "year"] = date.year
+        i += 1
+    df[["day", "month", "year"]] = df[["day", "month", "year"]].astype(int)
+    return df
+
+
+test_dates = [
+    datetime.date(2026, 10, 21),
+    datetime.date(2025, 5, 14),
+    datetime.date(2024, 12, 3),
+]
+print(get_day_month_year(test_dates).head())
 
 # 3)
 # Create a function called "compute_distance" that takes
