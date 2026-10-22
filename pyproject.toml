@@ -21,3 +21,7 @@ build-backend = "uv_build"
 dev = [
     "ipykernel>=7.4.0",
 ]
+
+[tool.uv.build-backend]
+module-name = "diabetes_library"
+module-root = "src"
