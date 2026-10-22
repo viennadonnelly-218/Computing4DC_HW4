@@ -53,6 +53,9 @@ sdist = { url = "https://files.pythonhosted.org/packages/da/0c/b4e42a0495293f6c9
 wheels = [
     { url = "https://files.pythonhosted.org/packages/66/e5/de8b557b279e31cdfb2070ac83eb45dc7e29bd93cd544128756f658e52c7/geopy-2.5.0-py3-none-any.whl", hash = "sha256:8ad8cc226b505ca4d272ae9a2eeba08b8a2c565fc9a04eaefc33ad49c32b51aa", size = 114619, upload-time = "2026-07-12T19:50:04.839Z" },
 ]
+    { name = "pandas", specifier = ">=3.0.6" },
+    { name = "scikit-learn", specifier = ">=1.9.1" },
+]
 
 [[package]]
 name = "joblib"
