@@ -40,4 +40,37 @@ train = train.dropna(subset=['age', 'gender', 'ethnicity'])
 test = test.dropna(subset=['age', 'gender', 'ethnicity'])
 # print(test.isnull().sum())
 
-# d. 
+# d. Fill NaN with the mean value of the column in the columns: height, weight.
+
+def fill_missing_with_mean(df, columns):
+    """Replace NaN values in the given columns with the column mean"""
+    df = df.copy()
+    df[columns] = df[columns].fillna(df[columns].mean())
+    return df
+
+train = fill_missing_with_mean(train, ["height", "weight"])
+test = fill_missing_with_mean(test, ["height", "weight"])
+print(train[["height", "weight"]].isnull().sum())
+
+# e. Generate dummies for ethnicity column (One hot encoding).
+
+def add_one_hot_dummies(df, columns):
+    """Add one-hot encoded columns for a categorical column."""
+    dummies = pd.get_dummies(df[columns], prefix=columns, dtype=int)
+    return pd.concat([df, dummies], axis=1)
+
+train = add_one_hot_dummies(train, "ethnicity")
+test = add_one_hot_dummies(test, "ethnicity")
+print(train.filter(like="ethnicity").head())
+
+# f. Create a binary variable for gender M/F.
+
+def encode_binary(df, columns, positive_value, new_column):
+    """ Create a 0/1 column: 1 if df[columns] == positive_value."""
+    df = df.copy()
+    df[new_column] = (df[columns] == positive_value).astype(int)
+    return df
+
+train = encode_binary(train, "gender", "M", "gender_male")
+test = encode_binary(test, "gender", "M", "gender_male")
+print(train[["gender", "gender_male"]].head())
