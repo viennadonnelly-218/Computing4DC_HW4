@@ -1,5 +1,4 @@
 import datetime
-
 import pandas as pd
 from functools import reduce
 import geopy.distance
@@ -14,17 +13,7 @@ simba_test_data = [
     "I laugh in the face of danger.",
     "Hakuna matata",
     "Timon, Pumba and Simba are friends, but Simba could eat the other two.",
-]
-
-
-# def count_simba(string_list):
-#    simba_count = 0
-#    for string in string_list:
-#        simba_in_string = string.lower().count("simba")
-#        if simba_in_string > 0:
-#            simba_count += simba_in_string
-#    return simba_count
-
+    "Simba, simba, SIMBA"]
 # Answer:
 
 def count_simba(string_list):
@@ -33,33 +22,21 @@ def count_simba(string_list):
 
 print(count_simba(simba_test_data))
 
-# 2)
-# Create a function called "get_day_month_year" that takes
+# 2) Create a function called "get_day_month_year" that takes
 # a list of datetimes.date and returns a pandas dataframe
 # with 3 columns (day, month, year) in which each of the rows
-# is an element of the input list and has as value its
-# day, month, and year.
-#
+# is an element of the input list and has as value its day, month, and year.
 
+# Answer:
 
-# 3)
 def get_day_month_year(date_list):
-    df = pd.DataFrame()
-    i = 0
-    for date in date_list:
-        df.loc[i, "day"] = date.day
-        df.loc[i, "month"] = date.month
-        df.loc[i, "year"] = date.year
-        i += 1
-    df[["day", "month", "year"]] = df[["day", "month", "year"]].astype(int)
-    return df
-
+    rows = list(map(lambda d: (d.day, d.month, d.year), date_list))
+    return pd.DataFrame(rows, columns=["day", "month", "year"])
 
 test_dates = [
     datetime.date(2026, 10, 21),
     datetime.date(2025, 5, 14),
-    datetime.date(2024, 12, 3),
-]
+    datetime.date(2024, 12, 3),]
 print(get_day_month_year(test_dates).head())
 
 # 3)
@@ -100,3 +77,6 @@ def sum_general_int_list(lista):
         else:
             raise TypeError(f"Elemento no válido:{elemento}")
     return total
+
+test_list_1=[[2], 3, [[1,2],5]]
+print(sum_general_int_list(test_list_1))
